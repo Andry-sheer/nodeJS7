@@ -7,7 +7,7 @@ export function setClient(client) {
 
 export function getClient() {
   if (!_client) {
-    throw new Error('Mongo Client not auth. Call setClient(client) from app.js');
+    throw new Error('MongoClient not initialized. Call setClient(client) from app.js');
   }
   return _client;
 }
