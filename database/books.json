@@ -1,0 +1,172 @@
+[
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "year": 1813,
+    "genre": ["Novel", "Romance"],
+    "language": "English",
+    "pages": 432,
+    "publisher": "T. Egerton",
+    "isbn": "9780141439518",
+    "rating": 4.6,
+    "available": true,
+    "tags": ["classic", "society", "marriage"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1775
+    }
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "year": 1949,
+    "genre": ["Dystopian", "Political Fiction"],
+    "language": "English",
+    "pages": 328,
+    "publisher": "Secker & Warburg",
+    "isbn": "9780451524935",
+    "rating": 4.7,
+    "available": true,
+    "tags": ["totalitarianism", "surveillance", "freedom"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1903
+    }
+  },
+  {
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "year": 1932,
+    "genre": ["Science Fiction", "Dystopian"],
+    "language": "English",
+    "pages": 311,
+    "publisher": "Chatto & Windus",
+    "isbn": "9780060850524",
+    "rating": 4.4,
+    "available": false,
+    "tags": ["future", "technology", "society"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1894
+    }
+  },
+  {
+    "title": "Jane Eyre",
+    "author": "Charlotte Brontë",
+    "year": 1847,
+    "genre": ["Novel", "Gothic"],
+    "language": "English",
+    "pages": 500,
+    "publisher": "Smith, Elder & Co.",
+    "isbn": "9780141441146",
+    "rating": 4.5,
+    "available": true,
+    "tags": ["love", "independence", "identity"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1816
+    }
+  },
+  {
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë",
+    "year": 1847,
+    "genre": ["Novel", "Tragedy"],
+    "language": "English",
+    "pages": 416,
+    "publisher": "Thomas Cautley Newby",
+    "isbn": "9780141439556",
+    "rating": 4.3,
+    "available": true,
+    "tags": ["passion", "revenge", "nature"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1818
+    }
+  },
+  {
+    "title": "Great Expectations",
+    "author": "Charles Dickens",
+    "year": 1861,
+    "genre": ["Novel", "Bildungsroman"],
+    "language": "English",
+    "pages": 544,
+    "publisher": "Chapman & Hall",
+    "isbn": "9780141439563",
+    "rating": 4.4,
+    "available": false,
+    "tags": ["growth", "society", "wealth"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1812
+    }
+  },
+  {
+    "title": "Oliver Twist",
+    "author": "Charles Dickens",
+    "year": 1838,
+    "genre": ["Novel", "Social Criticism"],
+    "language": "English",
+    "pages": 608,
+    "publisher": "Richard Bentley",
+    "isbn": "9780141439747",
+    "rating": 4.2,
+    "available": true,
+    "tags": ["poverty", "crime", "orphans"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1812
+    }
+  },
+  {
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde",
+    "year": 1890,
+    "genre": ["Philosophical Fiction", "Gothic"],
+    "language": "English",
+    "pages": 304,
+    "publisher": "Lippincott's Monthly Magazine",
+    "isbn": "9780141439570",
+    "rating": 4.5,
+    "available": true,
+    "tags": ["morality", "beauty", "decay"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1854
+    }
+  },
+  {
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "year": 1818,
+    "genre": ["Gothic", "Science Fiction"],
+    "language": "English",
+    "pages": 280,
+    "publisher": "Lackington, Hughes, Harding, Mavor & Jones",
+    "isbn": "9780141439471",
+    "rating": 4.3,
+    "available": false,
+    "tags": ["science", "ethics", "creation"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1797
+    }
+  },
+  {
+    "title": "Lord of the Flies",
+    "author": "William Golding",
+    "year": 1954,
+    "genre": ["Allegorical Novel"],
+    "language": "English",
+    "pages": 224,
+    "publisher": "Faber and Faber",
+    "isbn": "9780399501487",
+    "rating": 4.1,
+    "available": true,
+    "tags": ["human nature", "power", "chaos"],
+    "authorInfo": {
+      "country": "United Kingdom",
+      "born": 1911
+    }
+  }
+]
