@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { MongoClient } from "mongodb";
 import { getDb, setClient } from "./database/db.js";
+import { getLocalFiles } from "./utils/get_files.utils.js";
 
 const PORT = process.env.PORT || 3500;
 const DB_NAME = process.env.DB_NAME;
@@ -21,13 +22,25 @@ try {
 
 const database = getDb(DB_NAME);
 
-const getAllUsers = async () => {
-  const cursor = database.collection("users").find();
-  const data = await cursor.toArray();
-  console.log(data);
+const getAllBooks = async () => {
+  const files = await getLocalFiles();
+  const parseFiles = JSON.parse(files);
+
+  const collection_books = database.collection("books");
+  const allBooks = collection_books.find(); // .limit(5);
+  const data = await allBooks.toArray();
+
+  if (!data) {
+    const insertBooks = await collection_books.insertMany(parseFiles);
+    console.log(insertBooks);
+  } else {
+    console.log(`MDB already fulled...`);
+    // return;
+    process.exit(1);
+  }
 };
 
-await getAllUsers();
+await getAllBooks();
 await client.close();
 
 //! dont forget:
