@@ -21,5 +21,7 @@ export const setMigrations = async () => {
     })
 
     console.log(migrations);
+  } else {
+    console.log('already all done!');
   }
 }

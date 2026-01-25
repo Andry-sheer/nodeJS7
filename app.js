@@ -4,6 +4,7 @@ dotenv.config();
 import { MongoClient } from "mongodb";
 import { setClient } from "./database/db.js";
 import { setMigrations } from "./utils/set_migrations.utils.js";
+import { switchPropsFunction } from "./info.js";
 
 const PORT = process.env.PORT || 3500;
 const DB_NAME = process.env.DB_NAME;
@@ -20,5 +21,6 @@ try {
   process.exit(1);
 }
 
-await setMigrations();
+// await setMigrations();
+await switchPropsFunction();
 await client.close();
