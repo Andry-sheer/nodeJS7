@@ -1,41 +1,24 @@
-import { getDb } from "./database/db.js";
+import "./database/shutdown.db.js";
+import dotenv from "dotenv";
+dotenv.config();
+import { MongoClient } from "mongodb";
+import { setClient } from "./database/db.js";
+import { switchArgsFunction } from "./utils/switch_args.utils.js";
 
-export const switchPropsFunction = async () => {
-  const useAction = process.argv;
-  const database = await getDb(process.env.DB_NAME);
-  const collection_books = database.collection('books');
+const MDB_URI = process.env.MDB_URI || "mongodb://localhost:27017";
 
+const client = new MongoClient(MDB_URI);
 
-  if (useAction.includes('--author')) {
-    const authorsBooks = await collection_books.find({}, {projection: { author: 1, _id: 0 }}).toArray();
-    console.log(authorsBooks);
-    return authorsBooks;
-  }
-  
-  else if (useAction.includes('--genre')) {
-    const genresBooks = await collection_books.find({}, {projection: { genre: 1, _id: 0 }}).toArray();
-    console.log(genresBooks);
-    return genresBooks;
-  }
-  
-  else if (useAction.includes('--rating=4.3')) {
-    const ratingsBooks = await collection_books.find({ rating : { $gte : 4.3 } }).toArray();
-    console.log(ratingsBooks);
-    return ratingsBooks;
-  }
-
-  else if (useAction.includes('--tags=classical')) {
-    const updateTags = await collection_books.updateMany({}, { $addToSet: {tags: "classical"}})
-    console.log('updated documents:', updateTags.modifiedCount);
-    return updateTags;
-  }
-  
-  else {
-    const getDocuments = await collection_books.find({},{projection: {title: 1, _id: 0}}).toArray();
-    console.log(getDocuments);
-    console.log('all documents:', getDocuments.length);
-    console.log('node starting without args');
-  }
+try {
+  await client.connect();
+  setClient(client);
+  console.log("❄️  Connect to MDB successfully");
+} catch (error) {
+  console.error("😭  Filed to connect to MDB... ", error);
+  process.exit(1);
 }
 
-// await switchPropsFunction();
+
+await switchArgsFunction();
+
+await client.close();
