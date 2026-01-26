@@ -21,6 +21,6 @@ try {
   process.exit(1);
 }
 
-// await setMigrations();
+await setMigrations();
 await switchPropsFunction();
 await client.close();

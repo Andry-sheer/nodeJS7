@@ -1,16 +1,10 @@
 import { getDb } from "./database/db.js";
 
-
 export const switchPropsFunction = async () => {
   const useAction = process.argv;
   const database = await getDb(process.env.DB_NAME);
   const collection_books = database.collection('books');
 
-  const getDocuments = await collection_books.find({},
-    {projection: {title: 1, _id: 0}
-  }).toArray();
-  console.log(getDocuments);
-  console.log('all documents: ', getDocuments.length);
 
   if (useAction.includes('--author')) {
     const authorsBooks = await collection_books.find({}, {projection: { author: 1, _id: 0 }}).toArray();
@@ -30,16 +24,17 @@ export const switchPropsFunction = async () => {
     return ratingsBooks;
   }
 
-  // else if (useAction.includes('--tags=classical')) {
-  //   const updateTags = await collection_books.updateMany({
-  //       tags: "classical"
-  //   })
-  //   console.log(updateTags);
-  //   return updateTags;
-  // }
+  else if (useAction.includes('--tags=classical')) {
+    const updateTags = await collection_books.updateMany({}, { $addToSet: {tags: "classical"}})
+    console.log('updated documents:', updateTags.modifiedCount);
+    return updateTags;
+  }
   
   else {
-    console.log('Nothing found!');
+    const getDocuments = await collection_books.find({},{projection: {title: 1, _id: 0}}).toArray();
+    console.log(getDocuments);
+    console.log('all documents:', getDocuments.length);
+    console.log('node starting without args');
   }
 }
 

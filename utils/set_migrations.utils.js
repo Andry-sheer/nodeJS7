@@ -22,6 +22,6 @@ export const setMigrations = async () => {
 
     console.log(migrations);
   } else {
-    console.log('already all done!');
+    console.log('all documents were uploades and migrated!');
   }
 }
