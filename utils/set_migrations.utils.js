@@ -7,21 +7,27 @@ export const setMigrations = async () => {
   const collection_books = database.collection('books');
   const collection_migrations = database.collection('migrations');
 
-  const dataBooks = await collection_books.find().toArray();
+  try {
+    const dataBooks = await collection_books.findOne();
 
-  if (!dataBooks || dataBooks.length === 0) {
-    const allBooks = await getLocalFiles();
-    const insertedBooks = await collection_books.insertMany(allBooks);
-    console.log(insertedBooks);
+    if (!dataBooks) {
+      const allBooks = await getLocalFiles();
+      const insertedBooks = await collection_books.insertMany(allBooks);
+      console.log(insertedBooks);
 
-    const migrations = await collection_migrations.insertOne({
-      file: "books.json",
-      quantity: insertedBooks.insertedCount,
-      time: new Date()
-    })
+      const migrations = await collection_migrations.insertOne({
+        file: "books.json",
+        quantity: insertedBooks.insertedCount,
+        time: new Date()
+      })
 
     console.log(migrations);
   } else {
-    console.log('all documents were uploades and migrated!');
+    console.log('all documents were uploaded and migrated!');
+  }
+
+  } catch (error) {
+    console.error("error", error.message);
+    throw error
   }
 }

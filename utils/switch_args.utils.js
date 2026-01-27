@@ -2,33 +2,38 @@
 import { getDb } from "../database/db.js";
 
 export const switchArgsFunction = async () => {
-  const useAction = process.argv;
+  const nodeArgs = process.argv.slice(2);
+  const useNodeArgs = nodeArgs[0];
   const database = await getDb(process.env.DB_NAME);
   const collection_books = database.collection('books');
 
-
-  if (useAction.includes('--author')) {
+  if (useNodeArgs === '--author') {
     const authorsBooks = await collection_books.find({}, {projection: { author: 1, _id: 0 }}).toArray();
     console.log(authorsBooks);
-    return authorsBooks;
   }
   
-  else if (useAction.includes('--genre')) {
+  else if (useNodeArgs === '--genre') {
     const genresBooks = await collection_books.find({}, {projection: { genre: 1, _id: 0 }}).toArray();
     console.log(genresBooks);
-    return genresBooks;
   }
   
-  else if (useAction.includes('--rating=4.3')) {
-    const ratingsBooks = await collection_books.find({ rating : { $gte : 4.3 } }).toArray();
-    console.log(ratingsBooks);
-    return ratingsBooks;
+  else if (useNodeArgs.startsWith('--rating=')) {
+    const setRating = useNodeArgs.slice(9);
+    const parseSetRatingToNumber = +setRating;
+    
+    const ratingsBooks = await collection_books.find({ rating : { $gte : parseSetRatingToNumber } }).toArray();
+
+    if (ratingsBooks.length === 0) {
+      console.log(`not found books with rating: ${parseSetRatingToNumber}`);
+    } else {
+      console.log(ratingsBooks);
+    }
   }
 
-  else if (useAction.includes('--tags=classical')) {
-    const updateTags = await collection_books.updateMany({}, { $addToSet: {tags: "classical"}})
+  else if (useNodeArgs.startsWith('--tags=')) {
+    const setTag = useNodeArgs.slice(7);
+    const updateTags = await collection_books.updateMany({}, { $addToSet: {tags: setTag}})
     console.log('updated documents:', updateTags.modifiedCount);
-    return updateTags;
   }
   
   else {
